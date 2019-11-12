@@ -6,6 +6,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -28,9 +31,27 @@ public class MainActivity extends AppCompatActivity {
 
         recycler = findViewById(R.id.lista);
         adaptador = new Adaptador(this);
+        adaptador.setClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int pos = recycler.getChildAdapterPosition(view);
+                Toast.makeText(MainActivity.this, datos.get(pos).getTextoCorto(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        adaptador.setLongListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                int pos = recycler.getChildAdapterPosition(v);
+                Toast.makeText(MainActivity.this, datos.get(pos).getTextoLargo(),Toast.LENGTH_LONG).show();
+                return true;
+            }
+        });
+
         recycler.setAdapter(adaptador);
         recycler.setHasFixedSize(true);
         recycler.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
+
 
     }
 

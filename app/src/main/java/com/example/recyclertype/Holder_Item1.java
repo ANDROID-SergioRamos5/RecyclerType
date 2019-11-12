@@ -6,11 +6,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class Holder extends RecyclerView.ViewHolder {
+public class Holder_Item1 extends RecyclerView.ViewHolder {
 
     TextView txtCorto;
 
-    public Holder(@NonNull View itemView) {
+    public Holder_Item1(@NonNull View itemView) {
         super(itemView);
 
         txtCorto = itemView.findViewById(R.id.txt_title);
