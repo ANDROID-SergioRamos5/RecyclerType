@@ -11,15 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 public class Adaptador extends RecyclerView.Adapter implements View.OnClickListener, View.OnLongClickListener{
 
     Context context;
-    Holder_Item1 holder;
-    Holder_Item2 holder2;
-    Holder_Item3 holder3;
     Datos datos;
     View.OnClickListener listener;
     View.OnLongClickListener longListener;
+    onImagenClickListener listenerImg;
+    onClickBotonListener listenerbtn;
 
     public Adaptador(Context context) {
         this.context = context;
+
     }
 
     @Override
@@ -39,14 +39,30 @@ public class Adaptador extends RecyclerView.Adapter implements View.OnClickListe
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_type_2,parent,false);
             v.setOnClickListener(this);
             v.setOnLongClickListener(this);
-            return new Holder_Item2(v);
+
+            Holder_Item2 holder2 = new Holder_Item2(v);
+            holder2.ClickImagen(new onImagenClickListener() {
+                @Override
+                public void onImagenClick(Datos datos) {
+                    listenerImg.onImagenClick(datos);
+                }
+            });
+            return holder2;
         }
         else
         {
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_type_3,parent,false);
             v.setOnClickListener(this);
             v.setOnLongClickListener(this);
-            return new Holder_Item3(v);
+
+            Holder_Item3 holder3 = new Holder_Item3(v);
+            holder3.ClickBoton(new onClickBotonListener() {
+                @Override
+                public void onClickBoton(Datos datos) {
+                    listenerbtn.onClickBoton(datos);
+                }
+            });
+            return holder3;
         }
     }
 
@@ -115,5 +131,15 @@ public class Adaptador extends RecyclerView.Adapter implements View.OnClickListe
         if (longListener != null)
             longListener.onLongClick(v);
         return true;
+    }
+
+    public void ClickImagen(onImagenClickListener listener)
+    {
+        if (listener != null) listenerImg = listener;
+    }
+
+    public void ClickBoton(onClickBotonListener listener)
+    {
+        if (listener != null) listenerbtn = listener;
     }
 }

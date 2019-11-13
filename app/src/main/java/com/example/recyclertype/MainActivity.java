@@ -48,6 +48,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        adaptador.ClickImagen(new onImagenClickListener() {
+            @Override
+            public void onImagenClick(Datos datos) {
+                Toast.makeText(MainActivity.this, "Click en ImagenView", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        adaptador.ClickBoton(new onClickBotonListener() {
+            @Override
+            public void onClickBoton(Datos datos) {
+                Toast.makeText(MainActivity.this, "Click en los botones", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         recycler.setAdapter(adaptador);
         recycler.setHasFixedSize(true);
         recycler.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
