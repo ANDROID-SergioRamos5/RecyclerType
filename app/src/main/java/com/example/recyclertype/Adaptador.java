@@ -16,6 +16,9 @@ public class Adaptador extends RecyclerView.Adapter implements View.OnClickListe
     View.OnLongClickListener longListener;
     onImagenClickListener listenerImg;
     onClickBotonListener listenerbtn;
+    int TYPE_ITEM_1 = 0;
+    int TYPE_ITEM_2 = 1;
+    int TYPE_ITEM_3 = 2;
 
     public Adaptador(Context context) {
         this.context = context;
@@ -93,18 +96,7 @@ public class Adaptador extends RecyclerView.Adapter implements View.OnClickListe
 
     @Override
     public int getItemViewType(int position) {
-        switch(position) {
-            case 0:
-                return 0;
-            case 1:
-                return 1;
-            case 2:
-                return 2;
-            case 3:
-                return 3;
-            default:
-                return -1;
-        }
+        return position;
     }
 
 
